@@ -4,8 +4,7 @@ from datetime import datetime
 
 import pandas as pd
 
-
-# 定义调用编译器的函数
+# Define the function to call the compiler
 def compile_code(code, language="cpp"):
     if language == "cpp":
         return compile_cpp_code(code)
@@ -14,52 +13,49 @@ def compile_code(code, language="cpp"):
     else:
         raise ValueError("Unsupported language. Choose 'cpp' or 'python'.")
 
-
-# 编译并运行C++代码
+# Compile and run C++ code
 def compile_cpp_code(code):
     try:
-        # 保存代码到临时文件
+        # Save the code to a temporary file
         with open("temp_code.cpp", "w") as file:
             file.write(code)
 
-        # 编译C++代码
+        # Compile the C++ code
         subprocess.run(["g++", "temp_code.cpp", "-o", "temp_code"], check=True)
 
-        # 运行编译后的程序并捕获输出
+        # Run the compiled program and capture the output
         result = subprocess.run("./temp_code", capture_output=True, text=True)
         return result.stdout.strip()
     except subprocess.CalledProcessError as e:
         return f"Error: {e.stderr.strip()}"
     finally:
-        # 清理临时文件
+        # Clean up temporary files
         os.remove("temp_code.cpp")
         if os.path.exists("temp_code"):
             os.remove("temp_code")
 
-
-# 运行Python代码
+# Run Python code
 def run_python_code(code):
     try:
-        # 保存代码到临时文件
+        # Save the code to a temporary file
         with open("temp_code.py", "w") as file:
             file.write(code)
 
-        # 运行Python代码并捕获输出
+        # Run the Python code and capture the output
         result = subprocess.run(["python", "temp_code.py"], capture_output=True, text=True)
         return result.stdout.strip()
     except subprocess.CalledProcessError as e:
         return f"Error: {e.stderr.strip()}"
     finally:
-        # 清理临时文件
+        # Clean up temporary files
         os.remove("temp_code.py")
 
-
-# 读取Excel文件并处理每一行
+# Read the Excel file and process each row
 def process_excel(file_path, language="cpp"):
     df = pd.read_excel(file_path)
 
-    # 定义列名列表
-    columns_to_process = ['QMR1', 'QMR2', 'QMR3', 'QMR4', 'AMR1', 'AMR2']
+    # Define the list of columns to process
+    columns_to_process = ['QMR1', 'QMR2', 'QMR3', 'QMR4', 'AMR1', 'AMR2', 'Source_Answer', 'CMR1', 'CMR2', 'CMR3']
 
     for column in columns_to_process:
         if column in df:
@@ -72,10 +68,9 @@ def process_excel(file_path, language="cpp"):
     df.to_excel(output_path, index=False)
     return output_path
 
-
-# 主函数
+# Main function
 if __name__ == "__main__":
-    input_file_path = 'path_to_main_output.xlsx'  # main.py输出的文件路径
-    language = "cpp"  # 或 "python"
+    input_file_path = 'path_to_main_output.xlsx'  # The file path output by main.py
+    language = "cpp"  # or "python"
     compiled_file_path = process_excel(input_file_path, language)
     print(f"Compiled data saved to {compiled_file_path}")

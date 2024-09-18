@@ -1,22 +1,3 @@
-# Detecting and Reducing the Factual Hallucinations of Large Language Models with Metamorphic Testing
-
-Question answering (QA) is a fundamental task of a large language model (LLM), which requires LLM to automatically
-answer human-posed questions in natural language. However, LLMs are known to distort facts and make non-factual
-statements (hallucination) when dealing with QA tasks, which may affect the deployment of LLMs in real-life situations.
-In this work, we present DrHall, a method for the detection of factual errors in black-box large language models
-inspired by metamorphosis testing in software testing. We believe that the model's hallucination answer is unstable. It
-is easier to produce different answers to the hallucination by using metamorphic relation (MR) to make the model take
-different execution paths for re-execution. We empirically evaluate DrHall on three datasets covering natural and code
-language data, finding that it outperforms existing methods and baselines, often by a large gap. In addition, by
-transforming DrHall using diverse path sampling, we obtain error correction methods with higher success rates. Our
-results demonstrate the potential of using MR to mitigate LLM hallucination.
-
-## Table of Contents
-
-- [RQ1](#RQ1)
-- [RQ2](#RQ2)
-- [RQ3](#RQ3)
-
 ## RQ1
 
 ### FactHalluQA Dataset Overview

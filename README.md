@@ -69,6 +69,8 @@ metamorphic testing in software testing.
 * `config.py`: This file contains the configuration parameters used by the program.
 * `main.py`: This file contains the entry that runs the program.
 * `main_tr.py`: This file contains the entry that translate the questions.
+* `processing.py`: This file contains entries for processing natural language output.
+* `processing_code.py`: This file contains entries for processing programming language output.
 
 ### Usage
 
@@ -86,3 +88,5 @@ metamorphic testing in software testing.
 
 By transforming DrHall using diverse path sampling, we obtain error correction methods with higher success rates. Our
 results demonstrate the potential of using MR to mitigate LLM hallucination.
+### Usage
+After replacing `tasks` with `RQ3`, follow the same method.

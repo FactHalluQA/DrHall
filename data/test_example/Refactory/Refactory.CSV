@@ -1,0 +1,146 @@
+Question,Answer,Examples:input,Examples:output
+"Sequential Search
+Is the following program buggy? If there is, try to fix it.
+def search(x, seq):
+    for i in range(len(seq)):
+        if x <= seq[i]:
+            return i
+    return i + 1","buggy
+
+def search(x, seq):
+    for i in range(len(seq)):
+        if x <= seq[i]:
+            return i
+    return len(seq)","search(42, (-5, 1, 3, 5, 7, 10))",6
+"Unique dates and months
+Is the following program buggy? If there is, try to fix it.
+tuple_of_possible_birthdays = (('May', '15'),
+                              ('May', '16'),
+                              ('May', '19'),
+                              ('June', '17'),
+                              ('June', '18'),
+                              ('July', '14'),
+                              ('July', '16'),
+                              ('August', '14'),
+                              ('August', '15'),
+                              ('August', '17'))  
+
+def unique_day(day, possible_birthdays):
+    for i in range (len(possible_birthdays)):
+        if possible_birthdays[i][1] == day:
+            for j in range (i + 1, len(possible_birthdays)):
+                if possible_birthdays[j][1] == day:
+                    return False
+    return True
+def unique_month(month, possible_birthdays):
+    for i in range (len(possible_birthdays)):
+        if possible_birthdays[i][0] == month:
+            for j in range (i + 1, len(possible_birthdays)):
+                if possible_birthdays[j][0] == month:
+                    return False
+    return True
+def contains_unique_day(month, possible_birthdays):
+    for i in possible_birthdays:
+        if i[0] == month:
+            if unique_day(i[1], possible_birthdays):
+                return True
+    return False ","buggy
+
+tuple_of_possible_birthdays = (('May', '15'),
+                              ('May', '16'),
+                              ('May', '19'),
+                              ('June', '17'),
+                              ('June', '18'),
+                              ('July', '14'),
+                              ('July', '16'),
+                              ('August', '14'),
+                              ('August', '15'),
+                              ('August', '17'))
+
+def unique_day(day, possible_birthdays):
+    count = 0
+    for birthday in possible_birthdays:
+        if birthday[1] == day:
+            count += 1
+    return count == 1
+
+def unique_month(month, possible_birthdays):
+    count = 0
+    for birthday in possible_birthdays:
+        if birthday[0] == month:
+            count += 1
+    return count == 1
+
+def contains_unique_day(month, possible_birthdays):
+    for birthday in possible_birthdays:
+        if birthday[0] == month and unique_day(birthday[1], possible_birthdays):
+            return True
+    return False","contains_unique_day(""February"", ((""January"",""10""),(""February"",""1""),(""February"",""10"")))",TRUE
+"Duplicate 
+eliminationWrite a function remove_extras(lst) that takes in a list and returns a new list with all repeated occurrences of any element removed. For example, remove_extras([5, 2, 1, 2, 3]) returns the list [5, 2, 1, 3].
+Is the following program buggy? If there is, try to fix it.
+from collections import OrderedDict
+def remove_extras(lst):
+    lst1 = lst.reverse
+    for i in lst:
+        if lst.count(i) >1:
+            j = 0
+            while j < i:
+                lst1.remove(i)
+                j += 1
+    return lst1.reverse","buggy
+
+from collections import OrderedDict
+def remove_extras(lst):
+    newlist = []
+    for i in lst:
+        if i not in newlist:
+            newlist.append(i)
+    return newlist","remove_extras([1, 1, 1, 2, 3])","[1, 2, 3]"
+"Sorting Tuples
+Can we sort items other than integers? For this question, you will be sorting tuples! We represent a person using a tuple (<gender>, <age>). Given a list of people, write a function sort_age that sorts the people and return a list in an order such that the older people are at the front of the list. An example of the list of people is [(""M"", 23), (""F"", 19), (""M"", 30)]. The sorted list would look like [(""M"", 30), (""M"", 23), (""F"", 19)]. You may assume that no two members in the list of people are of the same age.
+Is the following program buggy? If there is, try to fix it.
+def sort_age(lst):
+    result = []
+    while lst !=[]:
+        lowest = lst[0][1]
+        index = 0
+        for i in range(1,len(lst)):
+            if lst[i][1]<lowest:
+                index = i
+                lowest = lst[i][1]
+        result = result +[lst[index]]
+        lst.pop[index]
+    return result","buggy
+
+def sort_age(lst):
+    for i in range(0, len(lst)-1):
+        for j in range(i+1, len(lst)):
+            if lst[i][1] < lst[j][1]:
+                tmp = lst[i]
+                lst[i] = lst[j]
+                lst[j] = tmp
+    return lst","sort_age([(""M"", 35), (""F"", 18), (""M"", 23), (""F"", 19), (""M"", 30), (""M"", 17)])","[('M', 35), ('M', 30), ('M', 23), ('F', 19), ('F', 18), ('M', 17)]"
+"Top-K
+Write a function top_k that accepts a list of integers as the input and returns the greatest k number of values as a list, with its elements sorted in descending order. You may use any sorting algorithm you wish, but you are not allowed to use sort and sorted.
+Is the following program buggy? If there is, try to fix it.
+import heapq
+def top_k(lst, k):
+    lst_res = lst
+    sort = []
+    while lst_res:
+        largest = lst_res[0]
+        for elements in lst_res:
+            if element > largest:
+                largest = element
+        lst_res.remove(largest)
+        sort.append(largest)
+    return sort[:k]","buggy
+
+import heapq
+def top_k(lst, k):
+    ls = []
+    for i in range(k):
+        ls.append(max(lst))
+        lst.remove(max(lst))
+    return ls","top_k([4, 5, 2, 3, 1, 6], 3)","[6, 5, 4]"

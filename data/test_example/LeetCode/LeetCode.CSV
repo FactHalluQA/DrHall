@@ -1,0 +1,21 @@
+Question,Examples:input,Examples:output
+"Please use the c++ language to generate code according to the following requirements :
+An attendance record for a student can be represented as a string where each character signifies whether the student was absent, late, or present on that day. The record only contains the following three characters:
+
+'A': Absent.
+'L': Late.
+'P': Present.
+Any student is eligible for an attendance award if they meet both of the following criteria:
+
+The student was absent ('A') for strictly fewer than 2 days total.
+The student was never late ('L') for 3 or more consecutive days.
+Given an integer n, return the number of possible attendance records of length n that make a student eligible for an attendance award. The answer may be very large, so return it modulo 10^9 + 7.",n = 2,8
+"Please use the c++ language to generate code according to the following requirements :
+Given a positive integer n, return the number of the integers in the range [0, n] whose binary representations do not contain consecutive ones.",n = 1,2
+"Please use the c++ language to generate code according to the following requirements :
+Given an integer n, return the number of ways you can write n as the sum of consecutive positive integers.",n = 15,4
+"Please use the python language to generate code according to the following requirements :
+Return the number of distinct non-empty substrings of text that can be written as the concatenation of some string with itself (i.e. it can be written as a + a where a is some string).","text = ""abcabcabc""",3
+"Please use the python language to generate code according to the following requirements :
+Given the strings s1 and s2 of size n and the string evil, return the number of good strings.
+A good string has size n, it is alphabetically greater than or equal to s1, it is alphabetically smaller than or equal to s2, and it does not contain the string evil as a substring. Since the answer can be a huge number, return this modulo 10^9 + 7.","n = 2, s1 = ""aa"", s2 = ""da"", evil = ""b""",51
